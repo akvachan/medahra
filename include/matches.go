@@ -12,8 +12,8 @@ type Match struct {
 }
 
 type PositionItem struct {
-	PositionID string  `json:"position_id"`
-	Score      float64 `json:"score"`
+	PositionID uint32  `json:"position_id"`
+	Score      float32 `json:"score"`
 	Reasoning  string  `json:"reasoning"`
 }
 
