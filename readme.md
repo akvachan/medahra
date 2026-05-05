@@ -1,4 +1,4 @@
-# MeDaHRa - Mediocre Dataset for HR Applications
+# medahra - Mediocre Dataset for HR Applications
 
 ## Motivation and Goal
 
