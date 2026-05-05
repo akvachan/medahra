@@ -1,6 +1,6 @@
-## Data Engineering in Go
+# MeDaHRa - Mediocre Dataset for HR Applications
 
-### Motivation and Goal
+## Motivation and Goal
 
 I need to evaluate BM25-HR, my custom BM25 algorithm fine-tuned for HR
 information retrieval / recommender system.
@@ -239,18 +239,18 @@ The dataset needs to be in 3 files:
 }
 ```
 
-### Precursor datasets
+## Precursor datasets
 
 - For positions: [https://www.kaggle.com/datasets/arshkon/linkedin-job-postings](https://www.kaggle.com/datasets/arshkon/linkedin-job-postings)
 - For candidates: [https://www.kaggle.com/datasets/snehaanbhawal/resume-dataset](https://www.kaggle.com/datasets/snehaanbhawal/resume-dataset)
 
-### Size
+## Scale
 
 - Positions (Job Postings): 123848 rows
 - Candidates (Resumes): 2483 rows
 - Matches (Candidate-Positions tuples): 2483 rows * top 10 results = 24830 items
 
-### Methodology
+## Methodology
 
 1. Parse as much information as possible from precursors, keep it as raw as possible.
 2. Prompt a small language model to fill in missing information.
