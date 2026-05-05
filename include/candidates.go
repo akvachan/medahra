@@ -1,10 +1,10 @@
 // Copyright (c) 2026 Arsenii Kvachan
 // SPDX-License-Identifier: MIT
 
-package main
+package medahra
 
 type Candidate struct {
-	CandidateID            uint32              `json:"candidate_id"`
+	CandidateID            uint16              `json:"candidate_id"`
 	About                  string              `json:"about"`
 	ShortAbout             string              `json:"short_about"`
 	GeneralSkills          []string            `json:"general_skills"`

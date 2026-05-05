@@ -3,6 +3,14 @@
 
 package main
 
+import (
+	"github.com/akvachan/medahra/include"
+)
+
 func main() {
+	medahra.ConvertPositionsCSVToJSONL(
+		"data/kaggle-positions.csv",
+		"data/positions.jsonl",
+	)
 	print("Hello, World!")
 }

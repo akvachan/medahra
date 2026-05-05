@@ -1,7 +1,7 @@
 // Copyright (c) 2026 Arsenii Kvachan
 // SPDX-License-Identifier: MIT
 
-package main
+package medahra
 
 import (
 	"bufio"
@@ -9,11 +9,10 @@ import (
 	"encoding/json"
 	"io"
 	"os"
-	"strconv"
 )
 
 type Position struct {
-	PositionID             uint16                  `json:"positionId"`
+	PositionID             uint32                  `json:"positionId"`
 	Description            string                  `json:"description"`
 	ShortDescription       string                  `json:"shortDescription"`
 	Modes                  []string                `json:"modes"`
@@ -70,37 +69,38 @@ func ReadCSV(
 type PositionColumn uint8
 
 const (
-	PositionColumnJobID                    PositionColumn = 0
-	PositionColumnCompanyName              PositionColumn = 1
-	PositionColumnTitle                    PositionColumn = 2
-	PositionColumnDescription              PositionColumn = 3
-	PositionColumnMaxSalary                PositionColumn = 4
-	PositionColumnPayPeriod                PositionColumn = 5
-	PositionColumnLocation                 PositionColumn = 6
-	PositionColumnCompanyID                PositionColumn = 7
-	PositionColumnViews                    PositionColumn = 8
-	PositionColumnMedSalary                PositionColumn = 9
-	PositionColumnMinSalary                PositionColumn = 10
-	PositionColumnFormattedWorkType        PositionColumn = 11
-	PositionColumnApplies                  PositionColumn = 12
-	PositionColumnOriginalListedTime       PositionColumn = 13
-	PositionColumnRemoteAllowed            PositionColumn = 14
-	PositionColumnJobPostingURL            PositionColumn = 15
-	PositionColumnApplicationURL           PositionColumn = 16
-	PositionColumnApplicationType          PositionColumn = 17
-	PositionColumnExpiry                   PositionColumn = 18
-	PositionColumnClosedTime               PositionColumn = 19
-	PositionColumnFormattedExperienceLevel PositionColumn = 20
-	PositionColumnSkillsDesc               PositionColumn = 21
-	PositionColumnListedTime               PositionColumn = 22
-	PositionColumnPostingDomain            PositionColumn = 23
-	PositionColumnSponsored                PositionColumn = 24
-	PositionColumnWorkType                 PositionColumn = 25
-	PositionColumnCurrency                 PositionColumn = 26
-	PositionColumnCompensationType         PositionColumn = 27
-	PositionColumnNormalizedSalary         PositionColumn = 28
-	PositionColumnZipCode                  PositionColumn = 29
-	PositionColumnFips                     PositionColumn = 30
+	PositionColumnRowID                    PositionColumn = 0
+	PositionColumnJobID                    PositionColumn = 1
+	PositionColumnCompanyName              PositionColumn = 2
+	PositionColumnTitle                    PositionColumn = 3
+	PositionColumnDescription              PositionColumn = 4
+	PositionColumnMaxSalary                PositionColumn = 5
+	PositionColumnPayPeriod                PositionColumn = 6
+	PositionColumnLocation                 PositionColumn = 7
+	PositionColumnCompanyID                PositionColumn = 8
+	PositionColumnViews                    PositionColumn = 9
+	PositionColumnMedSalary                PositionColumn = 10
+	PositionColumnMinSalary                PositionColumn = 11
+	PositionColumnFormattedWorkType        PositionColumn = 12
+	PositionColumnApplies                  PositionColumn = 13
+	PositionColumnOriginalListedTime       PositionColumn = 14
+	PositionColumnRemoteAllowed            PositionColumn = 15
+	PositionColumnJobPostingURL            PositionColumn = 16
+	PositionColumnApplicationURL           PositionColumn = 17
+	PositionColumnApplicationType          PositionColumn = 18
+	PositionColumnExpiry                   PositionColumn = 19
+	PositionColumnClosedTime               PositionColumn = 20
+	PositionColumnFormattedExperienceLevel PositionColumn = 21
+	PositionColumnSkillsDesc               PositionColumn = 22
+	PositionColumnListedTime               PositionColumn = 23
+	PositionColumnPostingDomain            PositionColumn = 24
+	PositionColumnSponsored                PositionColumn = 25
+	PositionColumnWorkType                 PositionColumn = 26
+	PositionColumnCurrency                 PositionColumn = 27
+	PositionColumnCompensationType         PositionColumn = 28
+	PositionColumnNormalizedSalary         PositionColumn = 29
+	PositionColumnZipCode                  PositionColumn = 30
+	PositionColumnFips                     PositionColumn = 31
 )
 
 func ConvertPositionsCSVToJSONL(csvPath string, jsonlPath string) error {
@@ -113,8 +113,12 @@ func ConvertPositionsCSVToJSONL(csvPath string, jsonlPath string) error {
 	writer := bufio.NewWriterSize(outFile, 100)
 	defer writer.Flush()
 
-	var positionID uint16 = 0
+	var positionID uint32 = 0
 	return ReadCSV(csvPath, func(record []string) error {
+		if record[0] == "" {
+			return nil
+		}
+
 		positionID++
 
 		position := Position{
