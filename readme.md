@@ -253,7 +253,7 @@ The dataset needs to be in 3 files:
 ## Methodology
 
 1. Parse as much information as possible from precursors, keep it as raw as possible.
-2. Prompt with Actor-Critic Editing (PACE) to fill in missing information.
-3. Use three different reranker models from three different cross-encoder families as annotators for the matches.
-4. Use majority vote as the source of truth (2 rerankers should have the same position, else choose position from the best reranker).
-5. Cross-check matched positions with multiple fields from the original datasets.
+2. [Prompt with Actor-Critic Editing (PACE)](https://arxiv.org/html/2308.10088v2) to fill in missing information.
+3. For each candidate, use embeddings for Recall, then cross-encoder for Precision, then an LLM for Reasoning.
+4. Include final score from the cross-encoder.
+5. Evaluate quality of data by clustering + using unused fields from the precursor dataset.
