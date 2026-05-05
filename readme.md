@@ -17,7 +17,8 @@ The dataset needs to be in 3 files:
 - `positions.jsonl`
 - `matches.jsonl`
 
-- `candidates.jsonl` has this structure:
+## Structure of `candidates.jsonl`
+
 ```json
 {
  "candidate_id": "serial id of a candidate",
@@ -118,7 +119,8 @@ The dataset needs to be in 3 files:
 }
 ```
 
-- `positions.jsonl` has this structure:
+## Structure of `positions.jsonl`
+
 ```json
 {
  "position_id": "a serial position identifier",
@@ -169,7 +171,8 @@ The dataset needs to be in 3 files:
 }
 ```
 
-- `matches.jsonl` has this structure:
+## Structure of `matches.jsonl`
+
 ```json
 {
  "match_id": "a serial id of a match",
@@ -238,8 +241,8 @@ The dataset needs to be in 3 files:
 
 ### Precursor datasets
 
-For positions: [https://www.kaggle.com/datasets/arshkon/linkedin-job-postings](https://www.kaggle.com/datasets/arshkon/linkedin-job-postings)
-For candidates: [https://www.kaggle.com/datasets/snehaanbhawal/resume-dataset](https://www.kaggle.com/datasets/snehaanbhawal/resume-dataset)
+- For positions: [https://www.kaggle.com/datasets/arshkon/linkedin-job-postings](https://www.kaggle.com/datasets/arshkon/linkedin-job-postings)
+- For candidates: [https://www.kaggle.com/datasets/snehaanbhawal/resume-dataset](https://www.kaggle.com/datasets/snehaanbhawal/resume-dataset)
 
 ### Size
 
