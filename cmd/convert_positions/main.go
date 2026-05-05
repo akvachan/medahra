@@ -12,5 +12,4 @@ func main() {
 		"data/kaggle-positions.csv",
 		"data/positions.jsonl",
 	)
-	print("Hello, World!")
 }
