@@ -236,21 +236,21 @@ The dataset needs to be in 3 files:
 }
 ```
 
-### Precursor data sets
+### Precursor datasets
 
 For positions: [https://www.kaggle.com/datasets/arshkon/linkedin-job-postings](https://www.kaggle.com/datasets/arshkon/linkedin-job-postings)
 For candidates: [https://www.kaggle.com/datasets/snehaanbhawal/resume-dataset](https://www.kaggle.com/datasets/snehaanbhawal/resume-dataset)
 
-### Data Scale
+### Size
 
-- Positions (Job Postings): 120k+
-- Candidates (Resumes): 2.4k+
-- Matches (Candidate-Positions tuples): 2.4k+
+- Positions (Job Postings): 123848 rows
+- Candidates (Resumes): 2483 rows
+- Matches (Candidate-Positions tuples): 2483 rows * top 10 results = 24830 items
 
 ### Methodology
 
 1. Parse as much information as possible from precursors, keep it as raw as possible.
 2. Prompt a small language model to fill in missing information.
-3. Use three different reranker models as annotators for the matches.
+3. Use three different reranker models from three different cross-encoder families as annotators for the matches.
 4. Use majority vote as the source of truth (2 rerankers should have the same position, else choose position from the best reranker).
-5. Sanity check matched positions with the `Category` field of the candidates precursor dataset and report estimated "purity" of the dataset.
+5. Cross-check matched positions with multiple fields from the original datasets.

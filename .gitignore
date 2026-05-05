@@ -1,0 +1,2 @@
+# Ignore large data, let Git's LFS handle that
+data/
